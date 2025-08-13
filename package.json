@@ -1,0 +1,15 @@
+{
+  "name": "@marcopollacci/debouncing",
+  "version": "1.0.0",
+  "description": "Simple debounce utility function",
+  "main": "index.js",
+  "type": "module",
+  "keywords": [
+    "debounce",
+    "javascript",
+    "utilities",
+    "frontend"
+  ],
+  "author": "Marco Pollacci",
+  "license": "MIT"
+}

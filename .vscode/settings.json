@@ -1,0 +1,23 @@
+{
+  "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#f8e01a",
+    "activityBar.background": "#f8e01a",
+    "activityBar.foreground": "#15202b",
+    "activityBar.inactiveForeground": "#15202b99",
+    "activityBarBadge.background": "#059b8a",
+    "activityBarBadge.foreground": "#e7e7e7",
+    "commandCenter.border": "#15202b99",
+    "sash.hoverBorder": "#f8e01a",
+    "statusBar.background": "#d8c207",
+    "statusBar.foreground": "#15202b",
+    "statusBarItem.hoverBackground": "#a79605",
+    "statusBarItem.remoteBackground": "#d8c207",
+    "statusBarItem.remoteForeground": "#15202b",
+    "titleBar.activeBackground": "#d8c207",
+    "titleBar.activeForeground": "#15202b",
+    "titleBar.inactiveBackground": "#d8c20799",
+    "titleBar.inactiveForeground": "#15202b99"
+  },
+  "peacock.color": "#d8c207",
+  "conventionalCommits.scopes": ["project"]
+}
