@@ -1,17 +1,17 @@
-# @marcopollacci/debounce
+# @marcopollacci/debouncing
 
 A simple debounce utility function.
 
 ## Installation
 
 ```bash
-npm install @marcopollacci/debounce
+npm install @marcopollacci/debouncing
 ```
 
 ## Usage
 
 ```js
-import debounce from "@marcopollacci/debounce";
+import { debouncing } from "@marcopollacci/debouncing";
 const log = debouncing(() => console.log("Hello"), 500);
 log(); // waits 500ms before printing 'Hello'
 ```

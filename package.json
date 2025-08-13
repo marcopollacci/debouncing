@@ -11,5 +11,8 @@
     "frontend"
   ],
   "author": "Marco Pollacci",
+  "publishConfig": {
+    "access": "public"
+  },
   "license": "MIT"
 }
