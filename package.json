@@ -1,6 +1,6 @@
 {
   "name": "@marcopollacci/debouncing",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Simple debounce utility function",
   "main": "index.js",
   "type": "module",
@@ -22,5 +22,12 @@
   "publishConfig": {
     "access": "public"
   },
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "package.json",
+    "README.md",
+    "LICENSE"
+  ],
   "license": "MIT"
 }
