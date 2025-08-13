@@ -4,6 +4,14 @@
   "description": "Simple debounce utility function",
   "main": "index.js",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcopollacci/debouncing.git"
+  },
+  "bugs": {
+    "url": "https://github.com/marcopollacci/debouncing/issues"
+  },
+  "homepage": "https://github.com/marcopollacci/debouncing#readme",
   "keywords": [
     "debounce",
     "javascript",
