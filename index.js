@@ -1,13 +1,15 @@
 /**
- * @description
- * Returns a debounced version of the given function.
- * A debounced function will not be invoked until the wait time has passed since the last call.
- * Each time the function is called, the waiting time is reset.
- * @param {Function} func - the function to debounce
- * @param {Number} wait - time in milliseconds to wait
- * @returns {Function} the debounced function
+ * Returns a debounced function that will delay the execution of `func` until
+ * after `wait` milliseconds have passed since the last time the debounced
+ * function was called. If `func` is called again before `wait` milliseconds,
+ * the timer is reset and the new call's execution is delayed again.
+ *
+ * @param {function} func - The function to be debounced.
+ * @param {number} [wait=500] - The number of milliseconds to delay the execution
+ * of `func`.
+ * @return {function} - The debounced function.
  */
-export const debouncing = (func, wait) => {
+export const debouncing = (func, wait = 500) => {
   let timeout;
   return function execute(...args) {
     const semaphore = () => {
