@@ -1,6 +1,6 @@
 # @marcopollacci/debouncing
 
-A simple debounce utility function.
+A simple debounce utility function with **cancel** and **pending** support.
 
 ## Installation
 
@@ -12,12 +12,30 @@ npm install @marcopollacci/debouncing
 
 ```js
 import { debouncing } from "@marcopollacci/debouncing";
+
+// Basic usage
 const log = debouncing(() => console.log("Hello"));
 log(); // waits 500ms before printing 'Hello' to the console
 
-// if need more than 500ms, set the second parameter
+// Custom wait time
+const log2 = debouncing(() => console.log("Hello after 1s"), 1000);
+log2(); // waits 1000ms before printing
+```
+
+## Extra features
+
+- Support for **cancel** and **pending** methods
+
+```js
 const log = debouncing(() => console.log("Hello"), 1000);
-log(); // waits 1000ms before printing 'Hello' to the console
+
+log(); // schedules execution in 1s
+
+// Cancel the pending execution
+log.cancel();
+
+// Check if execution is pending
+console.log(log.pending()); // false (because we canceled)
 ```
 
 ## License

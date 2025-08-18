@@ -11,12 +11,33 @@
  */
 export const debouncing = (func, wait = 500) => {
   let timeout;
-  return function execute(...args) {
+  function execute(...args) {
+    const context = this;
     const semaphore = () => {
-      clearTimeout(timeout);
-      func(...args);
+      clear();
+      func.apply(context, args);
     };
-    clearTimeout(timeout);
+    clear();
     timeout = setTimeout(semaphore, wait);
+  }
+
+  const clear = () => {
+    clearTimeout(timeout);
+    timeout = null;
   };
+
+  /**
+   * Cancels the delayed execution of `func`.
+   */
+  execute.cancel = () => clear();
+
+  /**
+   * Checks if there's a pending debounced execution.
+   * @return {boolean} - `true` if the debounced function is waiting to execute.
+   */
+  execute.pending = () => {
+    return timeout !== null;
+  };
+
+  return execute;
 };
