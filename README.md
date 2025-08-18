@@ -40,7 +40,7 @@ console.log(log.pending()); // false (because we canceled)
 
 ## Running tests
 
-This project uses Bun as the test runner.
+This project uses [Bun](https://bun.com/docs/cli/test) as the test runner.
 
 ```bash
 npx bun test index.test.js
