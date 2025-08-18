@@ -38,6 +38,14 @@ log.cancel();
 console.log(log.pending()); // false (because we canceled)
 ```
 
+## Running tests
+
+This project uses Bun as the test runner.
+
+```bash
+npx bun test index.test.js
+```
+
 ## License
 
 MIT

@@ -4,6 +4,9 @@
   "description": "Simple debounce utility function",
   "main": "index.js",
   "type": "module",
+  "scripts": {
+    "test": "npx bun test index.test.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/marcopollacci/debouncing.git"
