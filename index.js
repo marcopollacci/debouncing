@@ -11,12 +11,14 @@
  */
 export const debouncing = (func, wait = 500) => {
   let timeout;
-  let argsRef;
+  let argsRef = null;
+  let contextRef = null;
   function execute(...args) {
+    contextRef = this;
     argsRef = args;
     const semaphore = () => {
       clear();
-      executeFunc();
+      executeFunc(contextRef);
     };
     clear();
     timeout = setTimeout(semaphore, wait);
@@ -31,10 +33,15 @@ export const debouncing = (func, wait = 500) => {
   };
 
   /**
-   * Executes a function with the specified context and arguments
-   * @returns {*} - The result of the function execution
+   * Applies the original function `func` with the cached context and arguments.
+   * @param {Object} contextRef - The context of the function call.
+   * @private
    */
-  const executeFunc = () => func.apply(this, argsRef);
+  const executeFunc = (contextRef) => {
+    func.apply(contextRef, argsRef);
+    argsRef = null;
+    contextRef = null;
+  };
 
   /**
    * Cancels the delayed execution of `func`.
@@ -47,7 +54,7 @@ export const debouncing = (func, wait = 500) => {
    */
   execute.cancelAndExecute = () => {
     execute.cancel();
-    executeFunc();
+    if (argsRef) executeFunc(contextRef);
   };
 
   /**
