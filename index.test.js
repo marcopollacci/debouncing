@@ -30,4 +30,12 @@ describe("debouncing", () => {
     log.cancel();
     expect(log.pending()).toBe(false);
   });
+
+  test("cancelAndExecute", async () => {
+    const log = debouncing(() => console.log("Hello after 1s"), 1000);
+    log(); // waits 1000ms before printing
+    expect(log.pending()).toBe(true);
+    log.cancelAndExecute();
+    expect(log.pending()).toBe(false);
+  });
 });
