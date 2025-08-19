@@ -11,19 +11,36 @@
  */
 export const debouncing = (func, wait = 500) => {
   let timeout;
+  let argsRef = null;
+  let contextRef = null;
   function execute(...args) {
-    const context = this;
+    contextRef = this;
+    argsRef = args;
     const semaphore = () => {
       clear();
-      func.apply(context, args);
+      executeFunc(contextRef);
     };
     clear();
     timeout = setTimeout(semaphore, wait);
   }
 
+  /**
+   * Cancels the pending execution of `func` and resets the timer.
+   */
   const clear = () => {
     clearTimeout(timeout);
     timeout = null;
+  };
+
+  /**
+   * Applies the original function `func` with the cached context and arguments.
+   * @param {Object} contextRef - The context of the function call.
+   * @private
+   */
+  const executeFunc = (contextRef) => {
+    func.apply(contextRef, argsRef);
+    argsRef = null;
+    contextRef = null;
   };
 
   /**
@@ -32,12 +49,19 @@ export const debouncing = (func, wait = 500) => {
   execute.cancel = () => clear();
 
   /**
+   * Cancels the pending execution of `func` and executes it immediately.
+   * @return {*} - The return value of `func`.
+   */
+  execute.cancelAndExecute = () => {
+    execute.cancel();
+    if (argsRef) executeFunc(contextRef);
+  };
+
+  /**
    * Checks if there's a pending debounced execution.
    * @return {boolean} - `true` if the debounced function is waiting to execute.
    */
-  execute.pending = () => {
-    return timeout !== null;
-  };
+  execute.pending = () => timeout !== null;
 
   return execute;
 };
