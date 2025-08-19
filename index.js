@@ -38,9 +38,9 @@ export const debouncing = (func, wait = 500) => {
    * @private
    */
   const executeFunc = (contextRef) => {
-    func.apply(contextRef, argsRef);
     argsRef = null;
     contextRef = null;
+    return func.apply(contextRef, argsRef);
   };
 
   /**
@@ -54,7 +54,7 @@ export const debouncing = (func, wait = 500) => {
    */
   execute.cancelAndExecute = () => {
     execute.cancel();
-    if (argsRef) executeFunc(contextRef);
+    if (argsRef) return executeFunc(contextRef);
   };
 
   /**
