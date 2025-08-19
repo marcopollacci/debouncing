@@ -37,10 +37,11 @@ export const debouncing = (func, wait = 500) => {
    * @param {Object} contextRef - The context of the function call.
    * @private
    */
-  const executeFunc = (contextRef) => {
+  const executeFunc = (contextRefPassed) => {
+    const runFunc = func.apply(contextRefPassed, argsRef);
     argsRef = null;
     contextRef = null;
-    return func.apply(contextRef, argsRef);
+    return runFunc;
   };
 
   /**
