@@ -11,8 +11,15 @@
  */
 export const debouncing = (func, wait = 500) => {
   let timeout;
+  let runImmediately = false;
   function execute(...args) {
     const context = this;
+    if (runImmediately) {
+      func.apply(context, args);
+      runImmediately = false;
+      return;
+    }
+
     const semaphore = () => {
       clear();
       func.apply(context, args);
@@ -30,6 +37,12 @@ export const debouncing = (func, wait = 500) => {
    * Cancels the delayed execution of `func`.
    */
   execute.cancel = () => clear();
+
+  execute.cancelAndExecute = (...args) => {
+    execute.cancel();
+    runImmediately = true;
+    execute(...args);
+  };
 
   /**
    * Checks if there's a pending debounced execution.
